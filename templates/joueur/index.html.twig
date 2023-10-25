@@ -1,0 +1,67 @@
+{%extends 'base.html.twig'%}
+
+{% block css %}
+  <style>
+  main{
+    margin: 1em auto; 
+    max-width: 800px; 
+    width: 95%; 
+    font: 18px/1.5 sans-serif;
+    padding-top: 100px;
+  }
+  </style>
+{% endblock %}
+
+{% block link %}
+<link rel="stylesheet" href="https://cdn.datatables.net/1.13.6/css/jquery.dataTables.css">
+{% endblock %}
+
+{% block script %}
+{# ajout de la dépendence jquery pour utiliser dataTables #}
+  <script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+
+  {# including this js file #}
+  <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js">
+  </script>
+
+  {# Initializze DataTables with javascript #}
+  <script>
+    let table = new DataTable('#myTable');
+  </script>
+{% endblock %}
+
+{% block title %}
+  <h1>Liste des joueurs inscrit en club :</h1>
+{% endblock %}
+
+{% block body %}
+  <table id="myTable" class="display">
+    <thead>
+        <tr>
+            <th>Nom</th>
+            <th>Numéro</th>
+            <th>Nom du club</th>
+            <th>Date de naissance</th>
+        </tr>
+    </thead>
+    <tbody>
+        {# <tr>
+            <td>{{joueurs.nom}}</td>
+            <td>{{joueurs.numero}}</td>
+            <td>{{joueurs.nomClub}}</td>
+            <td>{{joueurs.dateAdhesion |date}}</td>
+        </tr> #}
+      {% for joueur in joueurs %}      
+        <tr>
+            <td>{{joueur.nom}}</td>
+            <td>{{joueur.numero}}</td>
+            <td>{{joueur.nomClub}}</td>
+            <td>{{joueur.dateAdhesion |date}}</td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
