@@ -1,0 +1,39 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}JoueurCrud index{% endblock %}
+
+{% block body %}
+    <h1>JoueurCrud index</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Id</th>
+                <th>Nom</th>
+                <th>Numero</th>
+                <th>Date</th>
+                <th>actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for joueur_crud in joueur_cruds %}
+            <tr>
+                <td>{{ joueur_crud.id }}</td>
+                <td>{{ joueur_crud.nom }}</td>
+                <td>{{ joueur_crud.numero }}</td>
+                <td>{{ joueur_crud.Date ? joueur_crud.Date|date('Y-m-d') : '' }}</td>
+                <td>
+                    <a href="{{ path('app_joueur_crud_show', {'id': joueur_crud.id}) }}">show</a>
+                    <a href="{{ path('app_joueur_crud_edit', {'id': joueur_crud.id}) }}">edit</a>
+                </td>
+            </tr>
+        {% else %}
+            <tr>
+                <td colspan="5">no records found</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_joueur_crud_new') }}">Create new</a>
+{% endblock %}
