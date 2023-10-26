@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Player{% endblock %}
+
+{% block body %}
+    <h1>Player</h1>
+
+    <table class="table">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ player.id }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ player.nom }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ player.numero }}</td>
+            </tr>
+            <tr>
+                <th>NomClub</th>
+                <td>{{ player.nomClub }}</td>
+            </tr>
+            <tr>
+                <th>DateAdhesion</th>
+                <td>{{ player.dateAdhesion ? player.dateAdhesion|date('Y-m-d') : '' }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_player_index') }}">back to list</a>
+
+    <a href="{{ path('app_player_edit', {'id': player.id}) }}">edit</a>
+
+    {{ include('player/_delete_form.html.twig') }}
+{% endblock %}
